@@ -37,29 +37,4 @@
 //     return prev;
 // }
 
-function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-    if (head === null) {
-        return null;
-    }
 
-    let cur: ListNode | null = head;
-    const arr: ListNode[] = [];
-
-    while (cur !== null) {
-        arr.push(cur);
-        cur = cur.next;
-    }
-
-    let len = arr.length;
-
-    if (n === len) {
-        // 删除的是头结点
-        return head.next;
-    }
-
-    arr[len - n - 1]['next'] = arr[len - n]['next'];
-    arr[len - n]['next'] = null;
-
-    return head;
-
-};

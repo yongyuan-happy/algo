@@ -24,7 +24,7 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
     let cur3 = dummy;
     let res = (Number(l1Arr.reverse().join('')) + Number(l2Arr.reverse().join(''))).toString().split('').reverse();
 
-res.forEach(
+    res.forEach(
         (val) => {
             cur3.next = new ListNode(Number(val));
             cur3 = cur3.next;

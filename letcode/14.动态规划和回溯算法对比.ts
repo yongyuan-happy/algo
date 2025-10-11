@@ -69,3 +69,53 @@ var findTargetSumWays = function (nums, target) {
         return result;
     }
 };
+
+
+// 104. 二叉树的最大深度
+
+// 遍历的思路
+var maxDepth = function(root) {
+    // 记录遍历到的节点的深度
+    let depth = 0;
+    // 记录最大深度
+    let res = 0;
+
+    // 遍历二叉树
+    var traverse = function(node) {
+        if (node === null) {
+            return;
+        }
+
+        // 前序遍历位置（进入节点）增加深度
+        depth++;
+        // 遍历到叶子节点时记录最大深度
+        if (node.left === null && node.right === null) {
+            res = Math.max(res, depth);
+        }
+        traverse(node.left);
+        traverse(node.right);
+
+        // 后序遍历位置（离开节点）减少深度
+        depth--;
+    };
+
+    traverse(root);
+    return res;
+};
+
+
+// 分解问题的思路
+// 定义：输入一个节点，返回以该节点为根的二叉树的最大深度
+var maxDepth = function(root) {
+    if (root === null) {
+        return 0;
+    }
+    // 利用定义，计算左右子树的最大深度
+    var leftMax = maxDepth(root.left);
+    var rightMax = maxDepth(root.right);
+    
+    // 根据左右子树的最大深度推出原二叉树的最大深度
+    // 整棵树的最大深度等于左右子树的最大深度取最大值，
+    // 然后再加上根节点自己
+    return 1 + Math.max(leftMax, rightMax);
+};

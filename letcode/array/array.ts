@@ -117,21 +117,7 @@
 //     // }
 // }
 
-// function moveZeroes(nums: number[]): void {
-//     const length = nums.length;
-//     let inc = 0;
-//     for (let index = length - 1; index >= 0; index--) {
-//         const element = nums[index];
-//         if (element === 0) {
-//             nums.splice(index, 1);
-//             inc++
-//         }
-//     }
-//     while (inc) {
-//         nums.push(0);
-//         inc--;
-//     }
-// };
+
 
 // function isSubsequence(s: string, t: string): boolean {
 //     let index = 0;

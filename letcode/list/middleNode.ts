@@ -19,18 +19,3 @@
 //     return cur2;
 // };
 
-function middleNode(head: ListNode | null): ListNode | null {
-    let slow, fast;
-    slow = fast = head;
-
-    while (fast !== null) {
-        // 常用快慢指针判断方式
-        if (fast.next === null) {
-            return slow;
-        }
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-
-    return slow;
-}

@@ -1,3 +1,4 @@
+// 搜索二叉树中序遍历为升序
 function isValidBST(root: TreeNode | null): boolean {
     return _isValidBST(root, null, null);
 };
