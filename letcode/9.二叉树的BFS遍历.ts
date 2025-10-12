@@ -19,7 +19,6 @@ var levelOrderTraverse = function (root) {
     }
 }
 
-
 var levelOrderTraverse = function (root) {
     if (root === null) {
         return;
@@ -91,7 +90,7 @@ function averageOfLevels(root: TreeNode | null): number[] {
     // while 循环控制从上向下一层层遍历
     while (q.length > 0) {
         let sz = q.length;
-        // 记录这一层的最大值
+        // 记录这一层的总值
         let averageNum = 0;
         // for 循环控制每一层从左向右遍历
         for (let i = 0; i < sz; i++) {

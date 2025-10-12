@@ -30,32 +30,31 @@ function hasCycle(head: ListNode | null): boolean {
 // 解题最重要的思路就是让慢指针重新指向头节点然后跑一遍
 // 如果相遇让其中任一个指针指向头节点，然后让它俩以相同速度前进，再次相遇时所在的节点位置就是环开始的位置
 function detectCycle(head: ListNode | null): ListNode | null {
-    if (head === null) {
-        return null;
+    if (!head) return null;
+
+    let slow: ListNode | null = head;
+    let fast: ListNode | null = head;
+
+    // 第一阶段：判断是否有环
+    while (fast && fast.next) {
+        slow = slow!.next;
+        fast = fast.next.next;
+        if (slow === fast) break; // 相遇表示有环
     }
 
-    let slow = head;
-    let fast = head;
+    // 如果没有环
+    if (!fast || !fast.next) return null;
 
-    while (fast !== null) {
-        slow = slow.next;
-        if (fast.next !== null) {
-            fast = fast.next.next;
-        } else {
-            return null;
-        }
-        if (fast === slow) {
-            let ptr = head;
-            while (ptr !== slow) {
-                ptr = ptr.next;
-                slow = slow.next;
-            }
-            return ptr;
-        }
+    // 第二阶段：找环的入口
+    let ptr: ListNode | null = head;
+    while (ptr !== slow) {
+        ptr = ptr!.next;
+        slow = slow!.next;
     }
 
-    return null;
-};
+    return ptr; // 环的起点
+}
+
 
 
 // 找到两个单向链表相交的可能存在无节点则返回null第一个节点。
@@ -106,7 +105,6 @@ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
     arr[len - n]['next'] = null;
 
     return head;
-
 };
 
 // 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
@@ -271,10 +269,7 @@ function reverseBetween(head: ListNode | null, left: number, right: number): Lis
         if (position === left) {
             start = cur;
         }
-        // 不能改成这样，存在越界情况
-        // if (position === right + 1) {
-        //     endNext = cur;
-        // }
+     
         if (position === right) {
             endNext = cur.next;
         }
@@ -319,7 +314,7 @@ function longestPalindrome(s: string): string {
         let s1 = expandAroundCenter(i, i);
         // 偶数法判断
         let s2 = expandAroundCenter(i, i + 1);
-        
+
         let s3 = Math.max(s1, s2);
 
         if (s3 > maxLength) {

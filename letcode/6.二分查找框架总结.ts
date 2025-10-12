@@ -26,7 +26,7 @@ var binary_search = function (nums, target) {
 
 var left_bound = function (nums, target) {
     var left = 0, right = nums.length - 1;
-    while (left <= right) {
+    while (left < right) {
         var mid = left + Math.floor((right - left) / 2);
         if (nums[mid] < target) {
             left = mid + 1;
@@ -47,7 +47,7 @@ var left_bound = function (nums, target) {
 
 var right_bound = function (nums, target) {
     var left = 0, right = nums.length - 1;
-    while (left <= right) {
+    while (left < right) {
         var mid = left + Math.floor((right - left) / 2);
         if (nums[mid] < target) {
             left = mid + 1;
@@ -69,6 +69,19 @@ var right_bound = function (nums, target) {
 // 分析二分查找的一个技巧是：不要出现 else，而是把所有情况用 else if 写清楚，这样可以清楚地展现所有细节。
 
 // 34. 在排序数组中查找元素的第一个和最后一个位置
+
+
+
+var searchRange = function (nums, target) {
+    const start = lowerBound(nums, target);
+    if (start === nums.length || nums[start] !== target) {
+        return [-1, -1]; // nums 中没有 target
+    }
+    // 如果 start 存在，那么 end 必定存在
+    const end = lowerBound(nums, target + 1) - 1;
+    return [start, end];
+};
+
 // lowerBound 返回最小的满足 nums[i] >= target 的下标 i
 // 如果数组为空，或者所有数都 < target，则返回 nums.length
 // 要求 nums 是非递减的，即 nums[i] <= nums[i + 1]
@@ -91,12 +104,38 @@ var lowerBound = function (nums, target) {
     return left;
 }
 
-var searchRange = function (nums, target) {
-    const start = lowerBound(nums, target);
-    if (start === nums.length || nums[start] !== target) {
-        return [-1, -1]; // nums 中没有 target
+
+function lowerB(nums, target) {
+    let left = 0, right = nums.length; // 左闭右开
+
+    while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[mid] >= target) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
     }
-    // 如果 start 存在，那么 end 必定存在
-    const end = lowerBound(nums, target + 1) - 1;
-    return [start, end];
+
+    return left;
+}
+
+// 35. 搜索插入位置
+var searchInsert = function (nums, target) {
+    let left = 0, right = nums.length;
+
+    while (left < right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[mid] > target) {
+            right = mid;
+        } else if (nums[mid] === target) {
+            return mid;
+        } else {
+            // 需要加一 
+            left = mid + 1;
+        }
+    }
+
+    return left;
 };
+

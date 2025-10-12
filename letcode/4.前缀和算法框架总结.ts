@@ -64,21 +64,22 @@ function productExceptSelf(nums: number[]): number[] {
 
 // 子数组 是数组中 连续 的部分。
 var subarraysDivByK = function (nums, k) {
-	let len = nums.length
-	let befores = [0]
-	for (let i = 0; i < len; i++) {
-		befores.push(befores[i] + nums[i])
-	}
-	let count = 0
-	let map = new Map()
-	map.set(0, 1)
-	for (let i = 1; i <= len; i++) {
-		let mod = ((befores[i] % k) + k) % k
-		if (map.has(mod)) {
-			count += map.get(mod)
-		}
-		let c = map.has(mod) ? map.get(mod) : 0
-		map.set(mod, c + 1)
-	}
-	return count
+    let len = nums.length
+    let befores = [0]
+    for (let i = 0; i < len; i++) {
+        befores.push(befores[i] + nums[i])
+    }
+
+    let map = new Map()
+    map.set(0, 1)
+
+    for (let i = 1; i <= len; i++) {
+        let mod = ((befores[i] % k) + k) % k
+        if (map.has(mod)) {
+            count += map.get(mod)
+        }
+        let c = map.has(mod) ? map.get(mod) : 0
+        map.set(mod, c + 1)
+    }
+    return count
 }

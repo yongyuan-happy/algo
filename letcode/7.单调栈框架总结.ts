@@ -16,7 +16,7 @@ var calculateGreaterElement = function (nums) {
     }
     return res;
 }
-
+// 739. 每日温度
 function dailyTemperatures(temperatures: number[]): number[] {
     const length = temperatures.length;
     const stack: number[] = [];

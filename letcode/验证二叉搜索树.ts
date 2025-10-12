@@ -11,5 +11,5 @@ function _isValidBST(root: TreeNode, min: TreeNode | null, max: TreeNode | null)
     if (max && root.val >= max.val) return false;
 
 
-    return _isValidBST(root.left, min, root) && _isValidBST(root.right, root, null);
+    return _isValidBST(root.left, min, root) && _isValidBST(root.right, root, max);
 }

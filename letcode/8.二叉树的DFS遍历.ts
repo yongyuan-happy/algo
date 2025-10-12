@@ -10,7 +10,6 @@ var traverse = function (root) {
     // 后序位置
 };
 
-
 function preorderTraversal(root: TreeNode | null): number[] {
     const res: number[] = [];
     if (!root) return res;
@@ -28,7 +27,6 @@ function preorderTraversal(root: TreeNode | null): number[] {
 
     return res;
 }
-
 
 function inorderTraversal(root: TreeNode | null): number[] {
     const res: number[] = [];

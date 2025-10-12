@@ -31,7 +31,7 @@ class Difference {
 
 
 // 1094. 拼车
-var carPooling = function(trips, capacity) {
+var carPooling = function (trips, capacity) {
     const d = Array(1001).fill(0);
     for (const [num, from, to] of trips) {
         d[from] += num;
