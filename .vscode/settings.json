@@ -1,0 +1,7 @@
+{
+  // 只禁用 Cursor AI 的代码补全功能
+  "cursor.cpp.disabledLanguages": ["typescript", "javascript", "typescriptreact", "javascriptreact"],
+  "github.copilot.enable": {
+    "*": false
+  }
+}
